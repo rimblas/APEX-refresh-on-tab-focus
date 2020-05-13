@@ -26,7 +26,7 @@ prompt APPLICATION 120 - APEX Defer Report Load on Tab focus
 -- Application Export:
 --   Application:     120
 --   Name:            APEX Defer Report Load on Tab focus
---   Date and Time:   21:01 Tuesday May 12, 2020
+--   Date and Time:   21:28 Tuesday May 12, 2020
 --   Exported By:     JMR
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -110,7 +110,7 @@ wwv_flow_api.create_flow(
 ,p_rejoin_existing_sessions=>'N'
 ,p_csv_encoding=>'Y'
 ,p_last_updated_by=>'JORGE@RIMBLAS.COM'
-,p_last_upd_yyyymmddhh24miss=>'20200512205958'
+,p_last_upd_yyyymmddhh24miss=>'20200512212810'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_ui_type_name => null
 );
@@ -9045,7 +9045,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'JORGE@RIMBLAS.COM'
-,p_last_upd_yyyymmddhh24miss=>'20200512205958'
+,p_last_upd_yyyymmddhh24miss=>'20200512211336'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2802070051161712)
@@ -9056,14 +9056,13 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'',
 'View plugin here <a href="https://github.com/rimblas/APEX-refresh-on-tab-focus" target="_blank">github.com/rimblas/APEX-refresh-on-tab-focus</a>.<br>',
 '',
 '<ol>',
-'    <li>Create a hidden and unprotected Page Item that you will use on your report and default it to "N". For example P2_VISIBLE_TAB_IND</li>',
-'    <li>Use the item in your report and remeber to add it to "Page Items to Submit". <code>where nvl(:P2_VISIBLE_TAB_IND, ''N'') = ''N''</code></li>',
+'    <li>Create a hidden unprotected Page Item that you will use on your report and default it to "N". For example P2_VISIBLE_TAB_IND</li>',
+'    <li>Use the item in your report and remember to add it to "Page Items to Submit". <code>where nvl(:P2_VISIBLE_TAB_IND, ''N'') = ''N''</code></li>',
 '    <li>Create a "Page Load" Dynamic Action</li>',
-'    <li>Use"Defer Report Load on Tab focus [Plug-In]" as the true action.</li>',
+'    <li>Use "Defer Report Load on Tab focus [Plug-In]" as the true action.</li>',
 '    <li>Specify your Report as the Affected Element</li>',
 '    <li>Specify the page item that will be switched from "N" to "Y" when the report refreshes (ie P2_VISIBLE_TAB_IND).</li>',
 '    <li>When the Tab becomes visible, the item will be set to Y and the report will refresh.</li>',
@@ -9622,7 +9621,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
-,p_last_upd_yyyymmddhh24miss=>'20200509213121'
+,p_last_updated_by=>'JORGE@RIMBLAS.COM'
+,p_last_upd_yyyymmddhh24miss=>'20200512212810'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10334233540282141)
@@ -9633,7 +9633,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_sequence=>10
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
+,p_plug_source=>'Credentials: demo/demo'
 ,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -9657,34 +9659,31 @@ wwv_flow_api.create_page_button(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(10334355514282146)
 ,p_name=>'P101_USERNAME'
-,p_item_sequence=>10
+,p_item_sequence=>20
 ,p_item_plug_id=>wwv_flow_api.id(10334233540282141)
 ,p_prompt=>'username'
 ,p_placeholder=>'username'
 ,p_display_as=>'NATIVE_TEXT_FIELD'
 ,p_cSize=>40
 ,p_cMaxlength=>100
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>wwv_flow_api.id(10322310159281964)
 ,p_item_icon_css_classes=>'fa-user'
 ,p_item_template_options=>'#DEFAULT#'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'N'
-,p_attribute_03=>'N'
 ,p_attribute_04=>'TEXT'
 ,p_attribute_05=>'NONE'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(10334483924282149)
 ,p_name=>'P101_PASSWORD'
-,p_item_sequence=>20
+,p_item_sequence=>30
 ,p_item_plug_id=>wwv_flow_api.id(10334233540282141)
 ,p_prompt=>'password'
 ,p_placeholder=>'password'
 ,p_display_as=>'NATIVE_PASSWORD'
 ,p_cSize=>40
 ,p_cMaxlength=>100
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>wwv_flow_api.id(10322310159281964)
 ,p_item_icon_css_classes=>'fa-key'
 ,p_item_template_options=>'#DEFAULT#'
