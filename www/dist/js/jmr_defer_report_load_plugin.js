@@ -4,7 +4,8 @@ var jmr = jmr || {};
     var C_TABS_CONTAINER = 't-TabsRegion',
         C_TABS_CONTAINER_SEL = '.' + C_TABS_CONTAINER,
         C_TAB_PANEL = 'a-Tabs-panel',
-        C_TAB_PANEL_SEL = '.' + C_TAB_PANEL;
+        C_TAB_PANEL_SEL = '.' + C_TAB_PANEL,
+        C_TAB_PANEL_PREFIX = "SR_";
 
  jmr.plugin = {
 
@@ -24,20 +25,41 @@ var jmr = jmr || {};
      * @param Trigger Item: Can be an APEX Item or a callback function
      * @param loadingMessage: displayed while the report loads the first time
      */
-    deferredUntil1stClick: function (reportRegion, triggerItem, loadingMessage) {
-        var el$ = $("#" + reportRegion),
-            tabsContainer = el$.parents(C_TABS_CONTAINER_SEL),
-            watchRegion = el$.parent()
-            loadingMessage = loadingMessage || apex.lang.getMessage("FETCHING_LATEST_CHANGES");
+    deferredUntil1stClick: function (action, triggerItem, loadingMessage) {
+        var reportRegion,
+            el$,
+            tabsContainer,
+            watchRegion,
+            loadingMessage_lang = loadingMessage || apex.lang.getMessage("FETCHING_LATEST_CHANGES");
+
+        // We support REGION or JQUERY_SELECTOR
+        if (action.affectedElementsType==="REGION") {
+            el$ = $("#" + action.affectedRegionId);
+            reportRegion = action.affectedRegionId;
+        }
+        else if (action.affectedElementsType==="JQUERY_SELECTOR") {
+            el$ = $(action.affectedElements);
+            reportRegion = el$[0].id;
+        }
+        else {
+            apex.debug.error("You must specify a Region or jQuery selector to watch");
+        }
+
+        tabsContainer = el$.parents(C_TABS_CONTAINER_SEL);
 
         apex.debug.message(4, {tabsContainer});
         apex.debug.message(4, {reportRegion});
         apex.debug.message(4, {triggerItem});
 
+        watchRegion = el$.parent(); // assume the parent is the watch region
+                                    // meaning the Tab 
+
         if (watchRegion.hasClass(C_TAB_PANEL)) {
-            watchRegion = "SR_" + reportRegion;
+            // Yes, the parent was the Tab, add the Tab refix`
+            watchRegion = C_TAB_PANEL_PREFIX + reportRegion;
         }
         else {
+            // The Tab is higher up, find it.
             watchRegion = el$.parents(C_TAB_PANEL_SEL)[0].id;
         }
 
@@ -69,7 +91,7 @@ var jmr = jmr || {};
                             msgEl$ = region.element.find(".nodatafound");
                         }
                         // if there's a msgElement, place our temporary message
-                        msgEl$ && msgEl$.html(loadingMessage);
+                        msgEl$ && msgEl$.html(loadingMessage_lang);
                         apex.debug.message(4, "Refreshing report");
                         apex.region(reportRegion).refresh();
                     }

@@ -79,10 +79,10 @@ begin
   
   l_result.javascript_function := '
   function(){
-  var affectedRegionId = this.action.affectedRegionId;
+  var daAction = this.action;
   setTimeout(function() {
       jmr.plugin.deferredUntil1stClick(
-      affectedRegionId,'
+      daAction,'
       || apex_javascript.add_value(l_trigger_item, true)
       || apex_javascript.add_value(l_changes_msg, false) || '
       )
