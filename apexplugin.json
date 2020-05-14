@@ -1,7 +1,7 @@
 {
   "name" : "Defer Report Load on Tab focus",
   "version" : "1.0.0",
-  "description" : "Defer the load a of a IR or Classic report until the tab gets focus",
+  "description" : "Defer the load a of an IR or Classic report until the tab gets focus",
   "keywords" : ["oracle", "apex", "plugin", "defer", "load", "refresh"],
   "homepage" : "https://github.com/rimblas/APEX-refresh-on-tab-focus",
   "bugs" : {
