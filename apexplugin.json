@@ -9,6 +9,7 @@
     "email" : "jorge@rimblas.com"
   },
   "license" : "MIT",
+  "commercial" : "No",
   "author" : {
     "name" : "Jorge Rimblas",
     "email" : "jorge@rimblas.com",
@@ -26,7 +27,7 @@
       "plugin" : {
         "internalName" : "JMR.RIMBLAS.DEFERREPORTLOAD",
         "type" : "dynamic action",
-        "demo" : "https://apex.oracle.com/pls/apex/f?p=97705",
+        "demo" : "https://apex.oracle.com/pls/apex/f?p=148571",
         "previewImage" : "https://github.com/rimblas/APEX-refresh-on-tab-focus/raw/master/preview.gif"
       }
     }
