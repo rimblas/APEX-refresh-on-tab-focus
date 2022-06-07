@@ -31,3 +31,4 @@ where nvl(:P2_VISIBLE_TAB_IND, 'N') = 'N'
 * Specify your Report as the Affected Element
 * Specify the page item that will be switched from "N" to "Y" when the report refreshes (ie. `P2_VISIBLE_TAB_IND`).
 * When the Tab becomes visible, the item will be set to Y and the report will refresh.
+* Make sure your refresh item is part of the "Page Items to Submit"
